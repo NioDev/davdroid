@@ -42,7 +42,7 @@ public abstract class DavSyncAdapter extends AbstractThreadedSyncAdapter impleme
 	@Getter private static String androidID;
 	
 	protected AccountManager accountManager;
-	protected CloseableHttpClient httpClient;
+	private CloseableHttpClient httpClient;
 
 	
 	public DavSyncAdapter(Context context) {
@@ -54,7 +54,18 @@ public abstract class DavSyncAdapter extends AbstractThreadedSyncAdapter impleme
 		}
 		
 		accountManager = AccountManager.get(context);
-		httpClient = DavHttpClient.create();
+		httpClient = null;
+	}
+	
+	public CloseableHttpClient getHttpClient(boolean trustAllCert){
+		if(httpClient == null){
+			if(trustAllCert){
+				httpClient = DavHttpClient.createByTrustingAllCert();
+			}else{
+				 httpClient = DavHttpClient.create();
+			}
+		}
+		return httpClient;
 	}
 	
 	@Override public void close() {

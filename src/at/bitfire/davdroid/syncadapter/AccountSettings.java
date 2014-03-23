@@ -26,6 +26,7 @@ public class AccountSettings {
 		
 		KEY_USERNAME = "user_name",
 		KEY_AUTH_PREEMPTIVE = "auth_preemptive",
+		KEY_TRUST_ALL_CERT = "trust_allcert",
 		
 		KEY_ADDRESSBOOK_URL = "addressbook_url",
 		KEY_ADDRESSBOOK_CTAG = "addressbook_ctag";
@@ -58,6 +59,8 @@ public class AccountSettings {
 		bundle.putString(KEY_SETTINGS_VERSION, String.valueOf(CURRENT_VERSION));
 		bundle.putString(KEY_USERNAME, serverInfo.getUserName());
 		bundle.putString(KEY_AUTH_PREEMPTIVE, Boolean.toString(serverInfo.isAuthPreemptive()));
+		bundle.putString(KEY_TRUST_ALL_CERT, Boolean.toString(serverInfo.isTrustAllCert()));
+		
 		for (ServerInfo.ResourceInfo addressBook : serverInfo.getAddressBooks())
 			if (addressBook.isEnabled()) {
 				bundle.putString(KEY_ADDRESSBOOK_URL, addressBook.getURL());
@@ -79,6 +82,10 @@ public class AccountSettings {
 	
 	public boolean getPreemptiveAuth() {
 		return Boolean.parseBoolean(accountManager.getUserData(account, KEY_AUTH_PREEMPTIVE));
+	}
+	
+	public boolean getTrustAllCert() {
+		return Boolean.parseBoolean(accountManager.getUserData(account, KEY_TRUST_ALL_CERT));
 	}
 	
 	

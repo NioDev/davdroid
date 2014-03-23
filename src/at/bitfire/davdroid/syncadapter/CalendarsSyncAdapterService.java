@@ -69,7 +69,7 @@ public class CalendarsSyncAdapterService extends Service {
 				Map<LocalCollection<?>, RemoteCollection<?>> map = new HashMap<LocalCollection<?>, RemoteCollection<?>>();
 				
 				for (LocalCalendar calendar : LocalCalendar.findAll(account, provider)) {
-					RemoteCollection<?> dav = new CalDavCalendar(httpClient, calendar.getUrl(), userName, password, preemptive);
+					RemoteCollection<?> dav = new CalDavCalendar(getHttpClient(settings.getTrustAllCert()), calendar.getUrl(), userName, password, preemptive);
 					map.put(calendar, dav);
 				}
 				return map;

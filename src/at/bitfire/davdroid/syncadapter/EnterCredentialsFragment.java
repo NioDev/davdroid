@@ -43,6 +43,7 @@ public class EnterCredentialsFragment extends Fragment implements TextWatcher {
 	TextView textHttpWarning;
 	EditText editBaseURL, editUserName, editPassword;
 	CheckBox checkboxPreemptive;
+	CheckBox checkboxTrustAllCert;
 	Button btnNext;
 	
 
@@ -79,7 +80,7 @@ public class EnterCredentialsFragment extends Fragment implements TextWatcher {
 		editPassword.addTextChangedListener(this);
 		
 		checkboxPreemptive = (CheckBox) v.findViewById(R.id.auth_preemptive);
-		
+		checkboxTrustAllCert = (CheckBox) v.findViewById(R.id.trust_allcert);
 		// hook into action bar
 		setHasOptionsMenu(true);
 
@@ -113,6 +114,7 @@ public class EnterCredentialsFragment extends Fragment implements TextWatcher {
 		args.putString(QueryServerDialogFragment.EXTRA_USER_NAME, editUserName.getText().toString());
 		args.putString(QueryServerDialogFragment.EXTRA_PASSWORD, editPassword.getText().toString());
 		args.putBoolean(QueryServerDialogFragment.EXTRA_AUTH_PREEMPTIVE, checkboxPreemptive.isChecked());
+		args.putBoolean(QueryServerDialogFragment.EXTRA_TRUST_ALL_CERT, checkboxTrustAllCert.isChecked());
 		
 		DialogFragment dialog = new QueryServerDialogFragment();
 		dialog.setArguments(args);

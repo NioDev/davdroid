@@ -55,7 +55,7 @@ public class ContactsSyncAdapterService extends Service {
 		
 		private ContactsSyncAdapter(Context context) {
 			super(context);
-			Log.i(TAG, "httpClient = " + httpClient);
+//			Log.i(TAG, "httpClient = " + httpClient);
 		}
 
 		@Override
@@ -71,8 +71,8 @@ public class ContactsSyncAdapterService extends Service {
 			
 			try {
 				LocalCollection<?> database = new LocalAddressBook(account, provider, settings);
-				Log.i(TAG, "httpClient 2 = " + httpClient);
-				RemoteCollection<?> dav = new CardDavAddressBook(httpClient, addressBookURL, userName, password, preemptive);
+				Log.i(TAG, "httpClient 2 = " + getHttpClient(settings.getTrustAllCert()));
+				RemoteCollection<?> dav = new CardDavAddressBook(getHttpClient(settings.getTrustAllCert()), addressBookURL, userName, password, preemptive);
 				
 				Map<LocalCollection<?>, RemoteCollection<?>> map = new HashMap<LocalCollection<?>, RemoteCollection<?>>();
 				map.put(database, dav);

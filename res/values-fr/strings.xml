@@ -33,7 +33,8 @@
     <string name="select_address_book">Choisissez un carnet d\'adresses(toucher à nouveau pour désélectionner):</string>
     <string name="select_calendars">Choisissez vos agendas:</string>
     <string name="auth_preemptive">Authentification préventive(recommandé, mais incompatible avec l\'authentification Digest)</string>
-    
+    <string name="trust_allcert">Aucune vérification de certificats.</string>
+   
     <string name="davdroid_help">Aide de DAVdroid</string>
     <string name="show_sync_settings">Gérer les comptes synchronisés</string>
     <string name="show_website">Site Web de DAVdroid</string>
